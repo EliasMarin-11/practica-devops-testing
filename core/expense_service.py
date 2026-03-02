@@ -28,9 +28,9 @@ class ExpenseService:
         title: str,
         amount: float,
         description: str = "",
-        expense_date: date = None,
+        expense_date: date | None = None, # Añadido el tipo opcional para mejor claridad
     ) -> Expense:
-        if expense_date == None:
+        if expense_date is None:  # <-- ¡CAMBIADO! Antes era == None
             expense_date = date.today()
         expense = Expense(
             id=self._next_id,
