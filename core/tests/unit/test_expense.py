@@ -4,7 +4,7 @@ from datetime import date, timedelta
 from core.expense import Expense
 from core.domain_error import (
     EmptyTitleError,
-    InvalidAmountError,       # Añadido para el test de cantidad negativa
+    InvalidAmountError,  # Añadido para el test de cantidad negativa
     InvalidExpenseDateError,  # Añadido para el test de fecha futura
 )
 
@@ -35,7 +35,9 @@ def test_negative_amount_raises_error():
     # <-- ¡CÓDIGO AÑADIDO!
     # Comprobamos que al intentar crear un gasto de -5€ salta el InvalidAmountError
     with pytest.raises(InvalidAmountError):
-        Expense(id=1, title="Cena", amount=-5, description="", expense_date=date.today())
+        Expense(
+            id=1, title="Cena", amount=-5, description="", expense_date=date.today()
+        )
 
 
 def test_future_date_raises_error():
@@ -47,7 +49,9 @@ def test_future_date_raises_error():
     # <-- ¡CÓDIGO AÑADIDO!
     # Calculamos la fecha de mañana sumando 1 día a hoy
     fecha_futura = date.today() + timedelta(days=1)
-    
+
     # Comprobamos que al crear un gasto con la fecha de mañana salta el InvalidExpenseDateError
     with pytest.raises(InvalidExpenseDateError):
-        Expense(id=1, title="Cine", amount=15, description="", expense_date=fecha_futura)
+        Expense(
+            id=1, title="Cine", amount=15, description="", expense_date=fecha_futura
+        )

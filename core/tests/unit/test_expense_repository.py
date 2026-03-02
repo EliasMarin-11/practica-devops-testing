@@ -60,10 +60,10 @@ def test_get_by_id_returns_expense():
     repo = InMemoryExpenseRepository()
     expense = create_expense(id=1, title="Gasto Buscado", amount=50)
     repo.save(expense)
-    
+
     # Buscamos el gasto por su ID
     resultado = repo.get_by_id(1)
-    
+
     # Comprobamos que lo ha encontrado y los datos coinciden
     assert resultado is not None
     assert resultado.id == 1
@@ -78,9 +78,9 @@ def test_get_by_id_returns_none_if_not_found():
     """
     # <-- ¡CÓDIGO AÑADIDO!
     repo = InMemoryExpenseRepository()
-    
+
     # Buscamos un ID que sabemos que no existe (ej. 99) en un repositorio vacío
     resultado = repo.get_by_id(99)
-    
+
     # Comprobamos que devuelve None
     assert resultado is None

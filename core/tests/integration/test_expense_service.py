@@ -84,17 +84,17 @@ def test_create_multiple_expenses_and_list():
     """
     # <-- ¡CÓDIGO AÑADIDO!
     service = create_service()
-    
+
     # Se agregan dos gastos distintos
     service.create_expense("Pan", 3, "Mercado", date.today())
     service.create_expense("Leche", 4, "Supermercado", date.today())
-    
+
     # Se obtiene el listado
     expenses = service.list_expenses()
-    
+
     # Se comprueba que el total de gastos es 2
     assert len(expenses) == 2
-    
+
     # Extraemos los títulos de los gastos recuperados
     titles = [e.title for e in expenses]
     # Comprobamos que ambos títulos están presentes
@@ -108,16 +108,16 @@ def test_remove_expense_reduces_total():
     """
     # <-- ¡CÓDIGO AÑADIDO!
     service = create_service()
-    
+
     # Se generan dos gastos
     service.create_expense("Libro", 15, "", date.today())
     service.create_expense("Revista", 5, "", date.today())
-    
+
     # Se elimina el primero (el id=1 es el Libro)
     service.remove_expense(1)
-    
+
     expenses = service.list_expenses()
-    
+
     # Solo queda un gasto
     assert len(expenses) == 1
     # El gasto remanente es "Revista"
@@ -130,16 +130,16 @@ def test_update_expense_partial_fields():
     """
     # <-- ¡CÓDIGO AÑADIDO!
     service = create_service()
-    
+
     # Se crea un gasto
     service.create_expense("Camiseta", 15, "Ropa", date.today())
-    
+
     # Se actualiza únicamente el campo amount usando el ID
     service.update_expense(expense_id=1, amount=18)
-    
+
     # Se recupera el gasto
     expense = service.list_expenses()[0]
-    
+
     # Se verifica que title y description están igual, y amount ha cambiado
     assert expense.title == "Camiseta"
     assert expense.amount == 18
@@ -152,16 +152,16 @@ def test_total_amount_after_removal():
     """
     # <-- ¡CÓDIGO AÑADIDO!
     service = create_service()
-    
+
     # Se crean dos gastos
     service.create_expense("Cursos", 30, "", date.today())
     service.create_expense("Internet", 25, "", date.today())
-    
+
     # Se comprueba que la suma inicial es 55
     assert service.total_amount() == 55
-    
+
     # Se elimina el gasto con id 1 ("Cursos")
     service.remove_expense(1)
-    
+
     # Se recalcula el total y se espera que sea 25
     assert service.total_amount() == 25
