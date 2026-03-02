@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+
+      - name: Install uv
+
+      - name: Install dependencies
+
+      - name: Install ruff and mypy
+
+      - name: Ruff format
+
+      - name: Ruff linter
+
+      - name: Mypy
+
+      - name: Unit tests
+
+      - name: Integration tests
+
+      - name: BDD tests
